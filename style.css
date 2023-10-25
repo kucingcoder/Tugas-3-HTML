@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Sometype+Mono:wght@400;500;600;700&display=swap');
+
+/*font-family: 'Quicksand', sans-serif;*/
+/*font-family: 'Sometype Mono', monospace;*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.tombol {
+    background-color: #00A9FF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 169, 255, 0.7);
+  }
+
+  .tombol:hover {
+    background-color: #21b4ff;
+    box-shadow: 0 0 10px rgba(0, 169, 255, 0.9);
+  }
+
+.landing {
+    height: 100vh;
+    background: #232D3F;
+}
+
+.landing img {
+    width: 300px;
+}
+
+.konten {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15rem;
+}
+
+.konten .teks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #FEFEFE;
+}
+
+.data-diri {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
