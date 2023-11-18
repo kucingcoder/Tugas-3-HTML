@@ -6,6 +6,200 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .clock{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: #00A9FF;
+            margin: 100px auto 0px auto;
+            position: relative;
+            border:20px solid #232D3F;
+
+        }
+        .center{
+            background-color: #000;
+            position: absolute;
+            left: calc(50% - 10px);
+            top:  calc(50% - 10px);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 20;
+        }
+        .hourHand{
+            width: 10px;
+            height: 75px;
+            background-color: #000;
+            transform-origin: bottom center;
+            border-radius: 4px;
+            position: absolute;
+            top: 75px;
+            left: 145px;
+            z-index: 10;
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            transform: rotate(360deg);
+
+        }
+        .minuteHand{
+            width: 5px;
+            height: 120px;
+            background-color: #000;
+            transform-origin: bottom center;
+            border-radius: 4px;
+            position: absolute;
+            top: 30px;
+            left: 147px;
+            z-index: 9;
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            transform: rotate(90deg);
+
+        }
+        .secondHand{
+            width: 2px;
+            height: 120px;
+            background-color:red;
+            transform-origin: bottom center;
+            border-radius: 4px;
+            position: absolute;
+            top: 30px;
+            left: 149px;
+            transition: all 0.06s;
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            z-index: 8;  
+            transform: rotate(360deg);
+
+        }
+        .time{
+            position: absolute;
+            top: 45%;
+            left: 10%;
+            border: 1px solid #fff8dc;
+            background-color: #fff;
+            padding: 5px;
+            display: block;
+            box-shadow: inset 0px 2px 5px rgba(0,0,0,.4);
+            border-radius: 5px;
+            min-width: 70px;
+            height: 15px;
+
+        }
+        .time small{
+            color:red;
+            transition: all 0.05s;
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .clock ul{
+            list-style: none;
+            padding: 0;
+
+        }
+        .clock ul li{
+            position: absolute;
+            width:20px;
+            height:20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 10px;
+            color:red;
+        }
+        .clock ul li:nth-child(1){
+            right: 22%;
+            top:6.5%;
+        }
+        .clock ul li:nth-child(2){
+            right: 6%;
+            top:25%;
+        }
+        .clock ul li:nth-child(3){
+            right: 1%;
+            top:calc(50% - 10px);
+            color:#000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .clock ul li:nth-child(4){
+            right: 6%;
+            top:69%;
+        }
+        .clock ul li:nth-child(5){
+            right: 22%;
+            top:84%;
+        }
+        .clock ul li:nth-child(6){
+            right: calc(50% - 10px);
+            top:calc(99% - 20px);
+            color:#000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .clock ul li:nth-child(7){
+            left: 22%;
+            top:84%;
+        }
+        .clock ul li:nth-child(8){
+            left: 6%;
+            top:69%;
+        }
+        .clock ul li:nth-child(9){
+            left: 1%;
+            top:calc(50% - 10px);
+            color:#000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .clock ul li:nth-child(10){
+            left: 6%;
+            top:25%;
+        }
+        .clock ul li:nth-child(11){
+            left: 22%;
+            top:6.5%;
+        }
+        .clock ul li:nth-child(12){
+            right: calc(50% - 10px);
+            top:1%;
+            color:#000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+
+        const hourHand = document.querySelector('.hourHand');
+            const minuteHand = document.querySelector('.minuteHand');
+            const secondHand = document.querySelector('.secondHand');
+            const time = document.querySelector('.time');
+            const clock = document.querySelector('.clock');
+            const audio = document.querySelector('.audio');
+
+            function setDate(){
+                const today = new Date();
+                
+                const second = today.getSeconds();
+                const secondDeg = ((second / 60) * 360) + 360; 
+                secondHand.style.transform = `rotate(${secondDeg}deg)`;
+            
+                audio.play();
+                
+                const minute = today.getMinutes();
+                const minuteDeg = ((minute / 60) * 360); 
+                minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+
+                const hour = today.getHours();
+                const hourDeg = ((hour / 12 ) * 360 ); 
+                hourHand.style.transform = `rotate(${hourDeg}deg)`;
+                
+                time.innerHTML = '<span>' + '<strong>' + hour + '</strong>' + ' : ' + minute + ' : ' + '<small>' + second +'</small>'+ '</span>';
+
+                }
+        
+            setInterval(setDate, 1000);
+        
+        }
+    </script>
     <title>M. Ibrahim Hanif</title>
 </head>
 <body>
@@ -20,7 +214,7 @@
         </ul>
     </div>
 
-    <div class="landing">
+    <section id="hero" class="landing">
         <div class="konten">
             <div class="teks">
                 <h3 style="font-family: 'Sometype Mono', monospace;">Halo, namaku</h3>
@@ -34,177 +228,215 @@
                 <img src="foto.jpg" alt="foto">
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="tentang" id="tentang">
-        <div class="pribadi" style="width: 35%; display: flex; flex-direction: column; gap: 1rem;" id="kontak">
-            <div class="data" style="display: flex; flex-direction: column; gap: 1rem;">
-                <h2 style="font-family: 'Quicksand', sans-serif;">Tentag Saya</h2>
-            
-                <p style="font-family: 'Quicksand', sans-serif; font-size: large; text-align: justify;">&emsp;&emsp;Perkenalkan saya M. Ibrahim Hanif mahasiswa semester 3 dari Politeknik Harapan Bersama Tegal. Berdomisili di Margadana, Kota Tegal, Jawa Tengah. Memiliki pemahaman dalam pengembangan software. Dapat membuat berbagai jenis perangkat lunak seperti Program Desktop GUI/CLI untuk client (Windows & Linux), Aplikasi Android Native, Website, API, dan Daemon Linux atau Linux Service. Dapat membuat model 3D low poly menggunakan Blender dan texturing menggunakan Subtance Painter Saya sedang mencari tempat magang untuk tugas pada semester 5.</p>
-            </div>
-
-            <div class="medsos" style="display: flex; flex-direction: column; gap: 1rem;">
-                <p style="font-family: 'Quicksand', sans-serif; font-size: large; text-align: justify;"><strong>Anda dapat menghubungi saya</strong></p>
-                <div style="display: flex; gap: 1rem;">
-                    <p style="padding: 5px 10px; border-radius: 5px; display: flex; gap: 10px; align-items: center; font-family: 'Quicksand', sans-serif; font-size: large; font-weight: bold; text-decoration: none; background: #ffb800; color: #fff;">hanif@serverku.my.id<i class="fa fa-envelope" style="font-size:25px;color:white;"></i></p>
-                    <a href="https://www.linkedin.com/in/m-ibrahim-hanif-883085259/" style="padding: 5px 10px; border-radius: 5px; display: flex; gap: 10px; align-items: center; font-family: 'Quicksand', sans-serif; font-size: large; font-weight: bold; text-decoration: none; background: blue; color: #fff;">Linkedin<i class="fa fa-linkedin" style="font-size:25px;color:white;"></i></a>
+    <section id="about-me">
+        <div class="tentang" id="tentang">
+            <div class="pribadi" style="width: 35%; display: flex; flex-direction: column; gap: 1rem;" id="kontak">
+                <div class="data" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <h2 style="font-family: 'Quicksand', sans-serif;">Tentag Saya</h2>
+                
+                    <p style="font-family: 'Quicksand', sans-serif; font-size: large; text-align: justify;">&emsp;&emsp;Perkenalkan saya M. Ibrahim Hanif mahasiswa semester 3 dari Politeknik Harapan Bersama Tegal. Berdomisili di Margadana, Kota Tegal, Jawa Tengah. Memiliki pemahaman dalam pengembangan software. Dapat membuat berbagai jenis perangkat lunak seperti Program Desktop GUI/CLI untuk client (Windows & Linux), Aplikasi Android Native, Website, API, dan Daemon Linux atau Linux Service. Dapat membuat model 3D low poly menggunakan Blender dan texturing menggunakan Subtance Painter Saya sedang mencari tempat magang untuk tugas pada semester 5.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="keahlian" style="width: 30%; display: flex; flex-direction: column; gap: 1rem;">
-            <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
-                <h2 style="font-family: 'Quicksand', sans-serif;">Programing</h2>
-
-                <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
-                    <li>
-                        <img src="https://img.shields.io/badge/C++-blue?style=flat&logo=c%2B%2B" alt="C++" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Python-brightgreen?style=flat&logo=python" alt="Python" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/HTML-orange?style=flat&logo=html5" alt="HTML" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/CSS-blue?style=flat&logo=css3" alt="CSS" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=javascript" alt="JavaScript" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Java-red?style=flat&logo=java" alt="Java" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/VB.net-green?style=flat&logo=visual-studio" alt="VB.net" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/C%23-blue?style=flat&logo=c-sharp" alt="C#" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Pascal-gold?style=flat&logo=delphi" alt="Pascal" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>       
+    
+            <div class="keahlian" style="width: 30%; display: flex; flex-direction: column; gap: 1rem;">
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                    <h2 style="font-family: 'Quicksand', sans-serif;">Programing</h2>
+    
+                    <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
+                        <li>
+                            <img src="https://img.shields.io/badge/C++-blue?style=flat&logo=c%2B%2B" alt="C++" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Python-brightgreen?style=flat&logo=python" alt="Python" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/HTML-orange?style=flat&logo=html5" alt="HTML" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/CSS-blue?style=flat&logo=css3" alt="CSS" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=javascript" alt="JavaScript" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Java-red?style=flat&logo=java" alt="Java" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/VB.net-green?style=flat&logo=visual-studio" alt="VB.net" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/C%23-blue?style=flat&logo=c-sharp" alt="C#" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Pascal-gold?style=flat&logo=delphi" alt="Pascal" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>       
+                    </ul>
+                </div>
+    
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                    <h2 style="font-family: 'Quicksand', sans-serif;">Framework</h2>
+    
+                    <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
+                        <li>
+                            <img src="https://img.shields.io/badge/React-blue?style=flat&logo=react" alt="React" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Drogon-gray?style=flat&logo=drogon" alt="Drogon" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/.NET-orange?style=flat&logo=dot-net" alt=".NET" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Swing-yellow?style=flat&logo=java" alt="Swing" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Express-green?style=flat&logo=express" alt="Express" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                    </ul>
+                </div>
+    
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                    <h2 style="font-family: 'Quicksand', sans-serif;">Tools</h2>
+    
+                    <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
+                        <li>
+                            <img src="https://img.shields.io/badge/Vscode-blue?style=flat&logo=visual-studio-code" alt="Vscode" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Visual%20Studio-purple?style=flat&logo=visual-studio" alt="Visual Studio" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/WSL-green?style=flat&logo=windows" alt="WSL" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/XAMPP-gold?style=flat&logo=xampp" alt="XAMPP" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/CMake-gray?style=flat&logo=cmake" alt="CMake" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Make-blue?style=flat" alt="Make" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/G%2B%2B-blue?style=flat&logo=c%2B%2B" alt="G++" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Inno%20Setup-red?style=flat&logo=windows" alt="Inno Setup" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Node.js-green?style=flat&logo=node.js" alt="Node.js" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/NPM-red?style=flat&logo=npm" alt="NPM" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Docker-informational?style=flat&logo=docker&logoColor=white" alt="Docker" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Jupyter%20Notebook-gold?style=flat&logo=jupyter" alt="Jupyter Notebook" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Blender-inactive?style=flat&logo=blender" alt="Blender" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                        <li>
+                            <img src="https://img.shields.io/badge/Substance%20Painter-red?style=flat&logo=substance-painter" alt="Substance Painter" style="border-radius: 5px; height: 25px; width: auto;">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="pengalaman" style="width: 22%; display: flex; flex-direction: column; gap: 1rem;">
+                <h2 style="font-family: 'Quicksand', sans-serif;">Pengalaman</h2>
+    
+                <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-family: 'Quicksand', sans-serif; font-size: large;">
+                    <li>Magang di toko <strong>Hai Komputer</strong></li>
+                    <li>Ikut serta <strong>Yabda Project</strong></li>
+                </ul>
+    
+                <h2 style="margin-top: 20px; font-family: 'Quicksand', sans-serif;">Cita - Cita</h2>
+    
+                <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-family: 'Quicksand', sans-serif; font-size: large;">
+                    <li>Mendirikan startup <strong>Felisware</strong></li>
+                    <li>Tidak Korupsi <strong>Dana Developer</strong></li>
                 </ul>
             </div>
-
-            <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
-                <h2 style="font-family: 'Quicksand', sans-serif;">Framework</h2>
-
-                <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
-                    <li>
-                        <img src="https://img.shields.io/badge/React-blue?style=flat&logo=react" alt="React" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Drogon-gray?style=flat&logo=drogon" alt="Drogon" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/.NET-orange?style=flat&logo=dot-net" alt=".NET" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Swing-yellow?style=flat&logo=java" alt="Swing" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Express-green?style=flat&logo=express" alt="Express" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                </ul>
-            </div>
-
-            <div style="width: 100%; display: flex; flex-direction: column; gap: 1rem;">
-                <h2 style="font-family: 'Quicksand', sans-serif;">Tools</h2>
-
-                <ul style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style-type: none;">
-                    <li>
-                        <img src="https://img.shields.io/badge/Vscode-blue?style=flat&logo=visual-studio-code" alt="Vscode" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Visual%20Studio-purple?style=flat&logo=visual-studio" alt="Visual Studio" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/WSL-green?style=flat&logo=windows" alt="WSL" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/XAMPP-gold?style=flat&logo=xampp" alt="XAMPP" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/CMake-gray?style=flat&logo=cmake" alt="CMake" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Make-blue?style=flat" alt="Make" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/G%2B%2B-blue?style=flat&logo=c%2B%2B" alt="G++" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Inno%20Setup-red?style=flat&logo=windows" alt="Inno Setup" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Node.js-green?style=flat&logo=node.js" alt="Node.js" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/NPM-red?style=flat&logo=npm" alt="NPM" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Docker-informational?style=flat&logo=docker&logoColor=white" alt="Docker" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Jupyter%20Notebook-gold?style=flat&logo=jupyter" alt="Jupyter Notebook" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Blender-inactive?style=flat&logo=blender" alt="Blender" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                    <li>
-                        <img src="https://img.shields.io/badge/Substance%20Painter-red?style=flat&logo=substance-painter" alt="Substance Painter" style="border-radius: 5px; height: 25px; width: auto;">
-                    </li>
-                </ul>
-            </div>
         </div>
+    </section>
 
-        <div class="pengalaman" style="width: 22%; display: flex; flex-direction: column; gap: 1rem;">
-            <h2 style="font-family: 'Quicksand', sans-serif;">Pengalaman</h2>
-
-            <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-family: 'Quicksand', sans-serif; font-size: large;">
-                <li>Magang di toko <strong>Hai Komputer</strong></li>
-                <li>Ikut serta <strong>Yabda Project</strong></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="karya" id="karya">
-        <h1 style="font-family: 'Quicksand', sans-serif; color: #fff;">Karya / Work Sample</h1>
-
-        <div style="display: flex; gap: 4rem;">
-            <div class="card">
-                <img src="arrodliyah.png" alt="gambar" style="height: 300px; width: 100%; border-radius: 15px 15px 0px 0px;">
-                
-                <div style="width: 300px;">
-                    <div style="padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; font-family: 'Sometype Mono', monospace;">
-                        <h2>Arrodliyah</h2>
-                        <p style="text-align: justify;">Web Profil Madrasah Diniyah Arrodliyah untuk informasi dan lainya.</p>
-                        <a href="https://arrodliyah.com" class="tombol" style="font-family: 'Quicksand', sans-serif; font-weight: bold; width: fit-content;">Lihat</a>
+    <section id="project">
+        <div class="karya" id="karya">
+            <h1 style="font-family: 'Quicksand', sans-serif; color: #fff;">Karya / Work Sample</h1>
+    
+            <div style="display: flex; gap: 4rem;">
+                <div class="card">
+                    <img src="arrodliyah.png" alt="gambar" style="height: 300px; width: 100%; border-radius: 15px 15px 0px 0px;">
+                    
+                    <div style="width: 300px;">
+                        <div style="padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; font-family: 'Sometype Mono', monospace;">
+                            <h2>Arrodliyah</h2>
+                            <p style="text-align: justify;">Web Profil Madrasah Diniyah Arrodliyah untuk informasi dan lainya.</p>
+                            <a href="https://arrodliyah.com" target="_blank" class="tombol" style="font-family: 'Quicksand', sans-serif; font-weight: bold; width: fit-content;">Lihat</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <img src="pakegpt.png" alt="gambar" style="height: 300px; width: 100%; border-radius: 15px 15px 0px 0px;">
+                    
+                    <div style="width: 300px;">
+                        <div style="padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; font-family: 'Sometype Mono', monospace;">
+                            <h2>Pake GPT</h2>
+                            <p style="text-align: justify;">Layana integrasi AI dengan perangkat lunak produktif umum. (rilis 1 november)</p>
+                            <a href="https://pakegpt.com" target="_blank" class="tombol" style="font-family: 'Quicksand', sans-serif; font-weight: bold; width: fit-content;">Lihat</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <img src="pakegpt.png" alt="gambar" style="height: 300px; width: 100%; border-radius: 15px 15px 0px 0px;">
-                
-                <div style="width: 300px;">
-                    <div style="padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; font-family: 'Sometype Mono', monospace;">
-                        <h2>Pake GPT</h2>
-                        <p style="text-align: justify;">Layana integrasi AI dengan perangkat lunak produktif umum. (rilis 1 november)</p>
-                        <a href="https://pakegpt.com" class="tombol" style="font-family: 'Quicksand', sans-serif; font-weight: bold; width: fit-content;">Lihat</a>
-                    </div>
-                </div>
+    <section id="contact-me" style="display: flex; justify-content: center; padding: 5rem;">
+        <div class="medsos" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <p style="font-family: 'Quicksand', sans-serif; font-size: large; text-align: justify;"><strong>Anda dapat menghubungi saya</strong></p>
+            <div style="display: flex; gap: 1rem;">
+                <p style="padding: 5px 10px; border-radius: 5px; display: flex; gap: 10px; align-items: center; font-family: 'Quicksand', sans-serif; font-size: large; font-weight: bold; text-decoration: none; background: #ffb800; color: #fff;">hanif@serverku.my.id<i class="fa fa-envelope" style="font-size:25px;color:white;"></i></p>
+                <a href="https://www.linkedin.com/in/m-ibrahim-hanif-883085259/" target="_blank" style="padding: 5px 10px; border-radius: 5px; display: flex; gap: 10px; align-items: center; font-family: 'Quicksand', sans-serif; font-size: large; font-weight: bold; text-decoration: none; background: blue; color: #fff;">Linkedin<i class="fa fa-linkedin" style="font-size:25px;color:white;"></i></a>
+                <a href="https://www.github.com/kucingcoder" target="_blank" style="padding: 5px 10px; border-radius: 5px; display: flex; gap: 10px; align-items: center; font-family: 'Quicksand', sans-serif; font-size: large; font-weight: bold; text-decoration: none; background: black; color: #fff;">Github<i class="fa fa-github" style="font-size:25px;color:white;"></i></a>
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="resume" id="resume">
         <h1 style="font-family: 'Quicksand', sans-serif;">Resume Seminar Invofest</h1>
 
         <div class="rangkuman">
             <p>&emsp;&emsp;&emsp;SEMINAR NASIONAL & AWARDING NATIONAL IT COMPETITION INVOFEST 2023 dilaksanakan pada 25 november 2023, berikut ini hasil rangkuman dari acara tersebut. Saat ini kita masuk ke era Disrupsi. Inovasi dan Adaptasi merupakan kunci untuk tetap bertahan di era disrupsi. untuk meningkatkan inovasi kita butuh meningkatkan literasi, berfikir kritis dan daya nalar. Redhat merupakan perusahaan yang berfokus pada opensource. Redhat memiliki program CSR berupa Redhat academy yang bekerjasama dengan institusi pendidikan yang dapat diakses secara gratis. saat ini produk Redhat banyak digunakan oleh perusahaan besar. ijazah S1/D4 atau ijazah kuliah lainnya tidak bisa menjamin bahwa kita bisa diterima bekerja, sebaliknya kita harus ada pengalaman yang mumpuni. oleh karena itu kita sebagai mahasiswa harus mencari pengalaman seluas mungkin sebagai modal karier maupun wirausaha kedepannya.</p>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; padding: 5rem;">
+        <div class="clock">
+            <div class="hourHand"></div>
+            <div class="minuteHand"></div>
+            <div class="secondHand"></div>
+            <div class="center"></div>
+            <div class="time"></div>
+            <ul>
+                <li><span>1</span></li>
+                <li><span>2</span></li>
+                <li><span>3</span></li>
+                <li><span>4</span></li>
+                <li><span>5</span></li>
+                <li><span>6</span></li>
+                <li><span>7</span></li>
+                <li><span>8</span></li>
+                <li><span>9</span></li>
+                <li><span>10</span></li>
+                <li><span>11</span></li>
+                <li><span>12</span></li>
+            </ul>
         </div>
     </div>
 
